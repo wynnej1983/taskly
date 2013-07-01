@@ -1,0 +1,18 @@
+<div>
+  <h1>Tasks</h1>
+</div>
+<form id="new-task-form" ng-submit="addTask()">
+  <input id="new-task" placeholder="What to do..?" ng-model="newTask" autofocus>
+</form>
+<ul id="task-list">
+  <li class="row-fluid" ng-repeat="task in tasks" ng-class="{done: task.done, editing: task == editedTask}">
+    <div class="view">
+      <input type="checkbox" class="toggle" ng-model="task.done">
+      <label ng-dblclick="editTask(task)">{{ task.name }}</label>
+      <div class="destroy" ng-click="removeTask(task)"></div>
+    </div>
+    <form ng-submit="endEdit(task)">
+      <input class="edit" ng-model="task.name" todo-blur="endEdit(task)" todo-focus="task == editedTask">
+    </form>
+  </li>
+</ul>
