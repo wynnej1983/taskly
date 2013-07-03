@@ -24,15 +24,14 @@ angular.module('todoApp')
         if (!taskName.length) { return; }
 
         task = {
-          id: null
-        , name: taskName
+          name: taskName
         , done: false
         };
 
         $scope.tasks.push(task);
         $scope.newTask = '';
         taskService.saveTask(task, function (i) {
-          task.id = i.id;
+          task._id = i._id;
         });
       };
 

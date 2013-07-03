@@ -5,7 +5,7 @@ angular
 	.factory('taskService', function ($resource) {
 		var Task = $resource(
       '/api/v1/tasks/:id'
-    , {id: '@id'}
+    , {id: '@_id'}
     , { 'update': { method: 'PUT' } });
 
     return {
@@ -13,7 +13,7 @@ angular
         return Task.query();
       },
       saveTask: function (task, cb) {
-        var update = task.id > 0;
+        var update = !!task._id;
         task = new Task(task);
 
         return update
