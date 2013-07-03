@@ -1,13 +1,10 @@
-/*global module: true, console: true*/
+/*global exports: true, console: true*/
 
 var _ = require('lodash')
   , Task = require('../models/task');
 
-module.exports = {
-  mapRoutes: function (app) {
+exports.mapRoutes = function (app) {
     app.get('/api/v1/tasks', function (req, res) {
-      if (req.fresh) { console.log('conditional GET use cached copy of resource'); return res.send(304); }
-
       Task.find(function (err, tasks) {
         if (err) {
           console.log(err);
@@ -65,5 +62,4 @@ module.exports = {
       });
     });
 
-  }
-};
+  };
