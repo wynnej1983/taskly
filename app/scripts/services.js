@@ -9,8 +9,8 @@ angular
     , { 'update': { method: 'PUT' } });
 
     return {
-      getTasks: function () {
-        return Task.query();
+      getTasks: function (limit, offset) {
+        return Task.query({limit: limit, offset: offset});
       },
       saveTask: function (task, cb) {
         var update = !!task._id;

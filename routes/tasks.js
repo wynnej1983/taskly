@@ -17,17 +17,29 @@ exports.mapRoutes = function (app) {
   });
 
   app.get('/api/v1/tasks:format(.json|.xml)?', setContentTypeFromResourceExtname, function (req, res) {
-    Task.find(function (err, tasks) {
+    var limit = req.query.limit || Number.MAX_VALUE
+      , offset = req.query.offset || 0;
+    Task.find({}, {}, {skip: offset * limit, limit: limit}, function (err, tasks) {
       if (err) {
         console.log(err);
         return res.send(404, { error: 'could not load tasks' });
       }
-      if (res.format === 'xml') {
-        var tasksXml = new Js2Xml('tasks', tasks.map(function (i) {return {_id: i._id.toString(), user_id: i.user_id, name: i.name, done: i.done, __v: i.__v}; })).toString();
-        res.send(tasksXml);
-      } else {
-        res.send(tasks);
-      }
+      Task.count({}, function (err, count) {
+        if (err) {
+          console.log(err);
+          return res.send(500, { error: 'could not load tasks count' });
+        }
+        tasks = tasks.map(function (task) {
+          var i = task.toObject();
+          return {_id: i._id.toString(), count: count, user_id: i.user_id, name: i.name, done: i.done, __v: i.__v};
+        });
+        if (res.format === 'xml') {
+          var tasksXml = new Js2Xml('tasks', tasks).toString();
+          res.send(tasksXml);
+        } else {
+          res.send(tasks);
+        }
+      });
     });
   });
 

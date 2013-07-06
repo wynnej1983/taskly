@@ -5,7 +5,10 @@ angular.module('todoApp')
     function ($scope, taskService) {
       $scope.newTask = '';
       $scope.editedTask = null;
-      $scope.tasks = taskService.getTasks();
+      $scope.itemsCount = 0;
+      $scope.itemsPerPage = 3;
+      $scope.currentPage = 1;
+      $scope.tasks = taskService.getTasks($scope.itemsPerPage, $scope.currentPage - 1);
 
       $scope.$watch('tasks', function (newValue, oldValue) {
         for (var i = 0, l1 = newValue.length, l2 = oldValue.length; i < l1 && l2; i ++) {
@@ -15,6 +18,7 @@ angular.module('todoApp')
             taskService.saveTask(task);
           }
         }
+        $scope.itemsCount = newValue.length ? newValue[0].count : $scope.itemsCount - 1;
       }, true);
 
       $scope.addTask = function () {
@@ -53,6 +57,14 @@ angular.module('todoApp')
       $scope.removeTask = function (task) {
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
         taskService.deleteTask(task);
+      };
+
+      $scope.onSelectPage = function (page) {
+        $scope.tasks = taskService.getTasks($scope.itemsPerPage, page - 1);
+      };
+
+      $scope.pagesCount = function () {
+        return Math.ceil($scope.itemsCount / $scope.itemsPerPage);
       };
     }
   ]);
