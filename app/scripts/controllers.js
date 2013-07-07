@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('TaskCtrl', ['$scope', 'taskService',
+  .controller('TasksCtrl', ['$scope', 'taskService',
     function ($scope, taskService) {
       $scope.newTask = '';
       $scope.editedTask = null;

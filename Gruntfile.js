@@ -265,7 +265,7 @@ module.exports = function (grunt) {
       dev: {
         options: {
           script: 'app.js'
-        } 
+        }
       },
       prod: {
         options: {

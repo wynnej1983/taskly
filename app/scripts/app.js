@@ -8,7 +8,7 @@ angular
 
 		$routeProvider
       .when('/tasks',
-            { controller: 'TaskCtrl'
+            { controller: 'TasksCtrl'
             , templateUrl: 'views/tasks.html' })
       .otherwise({ redirectTo: '/tasks'});
 	}]);

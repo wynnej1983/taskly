@@ -16,13 +16,13 @@ angular
         var update = !!task._id;
         task = new Task(task);
 
-        return update
-          ? task.$update()
-          : task.$save(function (i) {
-              if (cb) {
-                cb(i);
-              }
-            });
+        return update ?
+         task.$update() :
+         task.$save(function (i) {
+          if (cb) {
+            cb(i);
+          }
+        });
       },
       deleteTask: function (task) {
         task = new Task(task);
