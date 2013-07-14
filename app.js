@@ -13,18 +13,20 @@ var express = require('express')
 var app = express()
   , oneYear = 86400000 * 365;
 
+app.set('port', process.env.PORT || 3000);
+app.set('mongodb', process.env.MONGO_DB || 'mongodb://localhost/taskly_db');
+
 // mongodb connection
-mongoose.connect('mongodb://localhost/taskly_db')
+mongoose.connect(app.get('mongodb'))
   .connection
   .on('open', function () {
-    console.log('INFO::Connected to mongodb at mongodb://localhost/taskly_db');
+    console.log('INFO::Connected to mongodb at ' + app.get('mongodb'));
   })
   .on('error', function (err) {
-    console.log('ERROR::Errored trying to connect to mongodb at mongodb://localhost/taskly_db');
+    console.log('ERROR::Errored trying to connect to mongodb at ' + app.get('mongodb'));
     console.log(err);
   });
 
-app.set('port', process.env.PORT || 3000);
 
 app.use(express.favicon());
 app.use(express.compress());
