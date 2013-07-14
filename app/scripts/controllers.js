@@ -67,4 +67,15 @@ angular.module('todoApp')
         return Math.ceil($scope.itemsCount / $scope.itemsPerPage);
       };
     }
-  ]);
+  ])
+  .run(['$rootScope', function ($rootScope) {
+    $rootScope.changeTheme = function (theme) {
+      if (theme === 'light') {
+        $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/journal/bootstrap.min.css');
+      } else if (theme === 'dark') {
+        $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/cyborg/bootstrap.min.css');
+      } else {
+        $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/amelia/bootstrap.min.css');
+      }
+    };
+}]);

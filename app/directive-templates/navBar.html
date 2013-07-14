@@ -1,7 +1,19 @@
 <div class="navbar navbar-fixed-top">
-    <div class='navbar-inner'>
-        <div class="container-fluid">
-            <a class="brand" href="#">Taskly</a>
-        </div>
+  <div class='navbar-inner'>
+    <div class="container-fluid">
+      <a class="brand" href="#">
+        <i class="icon-edit"></i>
+        Taskly
+      </a>
+      <div class="btn-group pull-right">
+        <a class="btn btn-primary" href="#"><i class="icon-cog"></i> Theme</a>
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-chevron-down"></span></a>
+        <ul class="dropdown-menu">
+          <li><a ng-click="changeTheme('light')"> Light</a></li>
+          <li><a ng-click="changeTheme('dark')"> Dark</a></li>
+          <li><a ng-click="changeTheme('color')"> Color</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>

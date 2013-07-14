@@ -1,4 +1,4 @@
-/*global console: true, process: true*/
+/*global console: true, process: true, require: true*/
 'use strict';
 
 /**

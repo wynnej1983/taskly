@@ -1,7 +1,7 @@
 #task-list-container {
-  width: 550px;
+  max-width: 550px;
   margin: 130px auto 40px auto;
-  padding: 100px;
+  padding: 75px;
 }
 
 form#new-task-form {
@@ -175,4 +175,12 @@ form#new-task-form {
 
 #task-list li.editing:last-child {
 	margin-bottom: -1px;
+}
+
+.navbar-fixed-top .brand {
+  font-size: 2em;
+}
+
+.pagination ul li {
+  cursor: pointer;
 }

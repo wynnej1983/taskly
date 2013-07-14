@@ -16,7 +16,7 @@ describe('todo app', function () {
       expect(element('#new-task:focus').count()).toBeTruthy();
     });
 
-    it('should load 3 task items per page', function (done) {
+    it('should load 3 task items per page', function () {
       expect(repeater('#task-list li').count()).toBe(3);
     });
   });
