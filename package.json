@@ -42,5 +42,6 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "subdomain": "taskly"
 }
