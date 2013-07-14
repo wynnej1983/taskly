@@ -1,7 +1,7 @@
 #task-list-container {
   max-width: 550px;
   margin: 130px auto 40px auto;
-  padding: 75px;
+  padding: 70px;
 }
 
 form#new-task-form {

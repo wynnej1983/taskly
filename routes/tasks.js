@@ -19,7 +19,7 @@ exports.mapRoutes = function (app) {
   app.get('/api/v1/tasks:format(.json|.xml)?', setContentTypeFromResourceExtname, function (req, res) {
     var limit = req.query.limit || Number.MAX_VALUE
       , offset = req.query.offset || 0;
-    Task.find({}, {}, {skip: offset * limit, limit: limit}, function (err, tasks) {
+    Task.find({}, {}, {sort: { _id: -1 }, skip: offset * limit, limit: limit }, function (err, tasks) {
       if (err) {
         console.log(err);
         return res.send(404, { error: 'could not load tasks' });

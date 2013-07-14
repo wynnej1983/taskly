@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('TasksCtrl', ['$scope', 'taskService',
-    function ($scope, taskService) {
+  .controller('TasksCtrl', ['$scope', '$location', 'taskService',
+    function ($scope, $location, taskService) {
       $scope.newTask = '';
       $scope.editedTask = null;
       $scope.itemsCount = 0;
@@ -37,6 +37,8 @@ angular.module('todoApp')
         taskService.saveTask(task, function (i) {
           task._id = i._id;
         });
+        //temp hack to refresh pagination
+        $location.path('/');
       };
 
       $scope.editTask = function (task) {
@@ -57,6 +59,8 @@ angular.module('todoApp')
       $scope.removeTask = function (task) {
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
         taskService.deleteTask(task);
+        //temp hack to refresh pagination
+        $location.path('/');
       };
 
       $scope.onSelectPage = function (page) {
@@ -74,8 +78,10 @@ angular.module('todoApp')
         $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/journal/bootstrap.min.css');
       } else if (theme === 'dark') {
         $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/cyborg/bootstrap.min.css');
-      } else {
+      } else if (theme === 'color') {
         $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/amelia/bootstrap.min.css');
+      } else if (theme === 'metro') {
+        $('link[id="bs-theme"]').attr('href', '//netdna.bootstrapcdn.com/bootswatch/2.3.2/cosmo/bootstrap.min.css');
       }
     };
-}]);
+  }]);
