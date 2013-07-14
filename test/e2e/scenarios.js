@@ -2,7 +2,7 @@
 
 'use strict';
 
-describe('todo app', function () {
+describe('taskly app', function () {
   beforeEach(function () {
     browser().navigateTo('/');
   });

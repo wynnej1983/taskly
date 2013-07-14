@@ -3,7 +3,7 @@
 describe('Controller: TasksCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('todoApp'));
+  beforeEach(module('taskly'));
 
   var tasksCtrl
     , scope

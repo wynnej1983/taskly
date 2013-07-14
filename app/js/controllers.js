@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('todoApp')
+angular.module('taskly')
   .controller('TasksCtrl', ['$scope', '$location', 'taskService',
     function ($scope, $location, taskService) {
       $scope.newTask = '';
